@@ -1,0 +1,82 @@
+{
+  "_note": "SAMPLE / PREDEFINED ATTACK PATTERNS FOR PROJECT DEMONSTRATION ONLY. These are simplified academic patterns and do not represent real threat intelligence signatures.",
+
+  "signatures": [
+    {
+      "id": "SIG001",
+      "name": "Brute Force Attack",
+      "pattern": ["LOGIN_FAILED", "LOGIN_FAILED", "LOGIN_FAILED"],
+      "min_matches": 3,
+      "attack_type": "BRUTE_FORCE",
+      "severity": "HIGH",
+      "kill_chain_stage": "Initial Access",
+      "description": "Multiple consecutive failed logins from the same source — indicates a brute force attempt."
+    },
+    {
+      "id": "SIG002",
+      "name": "Malware Execution Chain",
+      "pattern": ["MALWARE_DETECTED", "SUSPICIOUS_PROCESS", "PRIVILEGE_ESCALATION"],
+      "min_matches": 3,
+      "attack_type": "MALWARE_ATTACK",
+      "severity": "CRITICAL",
+      "kill_chain_stage": "Execution",
+      "description": "Malware detected, followed by suspicious process and privilege escalation — full execution chain."
+    },
+    {
+      "id": "SIG003",
+      "name": "Insider Data Access",
+      "pattern": ["UNUSUAL_LOGIN", "PRIVILEGE_ESCALATION", "DATABASE_ACCESS"],
+      "min_matches": 3,
+      "attack_type": "INSIDER_THREAT",
+      "severity": "CRITICAL",
+      "kill_chain_stage": "Collection",
+      "description": "Unusual login followed by privilege escalation and database access — possible insider threat."
+    },
+    {
+      "id": "SIG004",
+      "name": "Lateral Movement with Data Theft",
+      "pattern": ["PRIVILEGE_ESCALATION", "LATERAL_MOVEMENT", "DATA_EXFILTRATION"],
+      "min_matches": 3,
+      "attack_type": "APT_ATTACK",
+      "severity": "CRITICAL",
+      "kill_chain_stage": "Exfiltration",
+      "description": "Privilege escalation followed by lateral movement and data exfiltration — advanced persistent threat pattern."
+    },
+    {
+      "id": "SIG005",
+      "name": "Ransomware Propagation",
+      "pattern": ["MALWARE_DETECTED", "SUSPICIOUS_PROCESS", "LATERAL_MOVEMENT"],
+      "min_matches": 3,
+      "attack_type": "RANSOMWARE",
+      "severity": "CRITICAL",
+      "kill_chain_stage": "Lateral Movement",
+      "description": "Malware detection followed by suspicious process and lateral movement — ransomware spreading."
+    }
+  ],
+
+  "event_type_lookup": {
+    "LOGIN_FAILED":         { "category": "Authentication", "base_severity": "LOW" },
+    "LOGIN_SUCCESS":        { "category": "Authentication", "base_severity": "LOW" },
+    "UNUSUAL_LOGIN":        { "category": "Authentication", "base_severity": "MEDIUM" },
+    "MALWARE_DETECTED":     { "category": "Malware",        "base_severity": "HIGH" },
+    "SUSPICIOUS_PROCESS":   { "category": "Malware",        "base_severity": "HIGH" },
+    "PRIVILEGE_ESCALATION": { "category": "Escalation",     "base_severity": "CRITICAL" },
+    "LATERAL_MOVEMENT":     { "category": "Movement",       "base_severity": "CRITICAL" },
+    "DATABASE_ACCESS":      { "category": "Data Access",    "base_severity": "HIGH" },
+    "DATA_EXFILTRATION":    { "category": "Exfiltration",   "base_severity": "CRITICAL" },
+    "PORT_SCAN":            { "category": "Reconnaissance", "base_severity": "MEDIUM" },
+    "NORMAL_LOGIN":         { "category": "Normal",         "base_severity": "LOW" },
+    "NORMAL_TRAFFIC":       { "category": "Normal",         "base_severity": "LOW" },
+    "FILE_ACCESS":          { "category": "Normal",         "base_severity": "LOW" }
+  },
+
+  "kill_chain_stages": [
+    "Reconnaissance",
+    "Initial Access",
+    "Execution",
+    "Privilege Escalation",
+    "Lateral Movement",
+    "Collection",
+    "Exfiltration"
+  ]
+}
